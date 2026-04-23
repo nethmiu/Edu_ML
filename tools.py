@@ -1,12 +1,12 @@
 def file_reader_tool(file_path: str) -> str:
     """
-    පහත ගොනුව (txt) කියවා එහි අන්තර්ගතය ලබා දෙයි. [cite: 26]
+    Reads the following file (txt) and returns its content.
     
     Args:
-        file_path (str): කියවිය යුතු ගොනුවේ මාර්ගය (Path).
+        file_path (str): The path of the file to be read.
         
     Returns:
-        str: ගොනුවේ ඇති සම්පූර්ණ පෙළ (text).
+        str: The full text content of the file.
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
