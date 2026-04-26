@@ -1,36 +1,51 @@
 from langgraph.graph import StateGraph, END
 from state import AgentState
-from agents import summarizer_agent
-from tools import file_reader_tool
+from agents import summarizer_agent, question_generator_agent, evaluator_agent, study_planner_agent
+from tools import file_reader_tool, planner_formatter_tool, quiz_exporter_tool, summary_saver_tool
+from logger_config import logger
 
-# 1. Initializing the system workflow (Graph)
+# Initialize the Workflow Graph
 workflow = StateGraph(AgentState)
 
-# 2. Adding Nodes to the system
-# Here "summarizer" represents the responsibility of one member
 workflow.add_node("summarizer", summarizer_agent)
+workflow.add_node("quiz_gen", question_generator_agent)
+workflow.add_node("evaluator", evaluator_agent)
+workflow.add_node("planner", study_planner_agent)
 
-# 3. Setting up the system flow (Edges)
 workflow.set_entry_point("summarizer")
-workflow.add_edge("summarizer", END)
+workflow.add_edge("summarizer", "quiz_gen")
+workflow.add_edge("quiz_gen", "evaluator")
+workflow.add_edge("evaluator", "planner")
+workflow.add_edge("planner", END)
 
-# 4. Compiling the system
 app = workflow.compile()
 
-# 5. Testing the system (Execution)
 if __name__ == "__main__":
-    # Reading data using the Custom Tool
-    initial_content = file_reader_tool("notes.txt") 
+    logger.info("=== EDUCATIONAL MULTI-AGENT SYSTEM INITIALIZED ===")
     
-    if initial_content and not initial_content.startswith("Error"):
-        # Running the system and getting the final result
-        inputs = {"lecture_notes": initial_content}
-        result = app.invoke(inputs)
-
-        # Displaying the final summary on the screen
-        print("\n" + "="*30)
-        print("FINAL SUMMARIZED OUTPUT:")
-        print("="*30)
-        print(result.get("summary", "Could not retrieve the summary."))
+    content = file_reader_tool("notes.txt")
+    
+    if content and not content.startswith("Error"):
+        result = app.invoke({"lecture_notes": content})
+        
+        print("\n" + "="*70)
+        print("          COMPLETE MULTI-AGENT SYSTEM EXECUTION LOG          ")
+        print("="*70)
+        
+        # Student 1 Output processing
+        summary_out = result.get('summary', 'No summary generated.')
+        print(f"\n[STUDENT 1: SUMMARIZER OUTPUT]\n{'-'*30}\n{summary_out}")
+        summary_saver_tool(summary_out) # Summary එක වෙනම සේව් කිරීම
+        
+        # Other Outputs
+        print(f"\n[STUDENT 2: QUESTION GENERATOR OUTPUT]\n{'-'*30}\n{result.get('quiz_questions')}")
+        quiz_exporter_tool(result.get('quiz_questions'))
+        
+        print(f"\n[STUDENT 3: PERFORMANCE EVALUATOR OUTPUT]\n{'-'*30}\n{result.get('grading_results')}")
+        
+        print(f"\n[STUDENT 4: STUDY PLANNER OUTPUT]\n{'-'*30}\n{result.get('final_study_plan')}")
+        planner_formatter_tool(result.get('final_study_plan'))
+        
+        logger.info("=== SYSTEM EXECUTION FINISHED SUCCESSFULLY ===")
     else:
-        print(f"Could not execute the system: {initial_content}")
+        logger.error("System failed to start due to file reading error.")
