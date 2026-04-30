@@ -1,0 +1,5 @@
+{
+    "score": 90,
+    "status": "Pass",
+    "feedback": "You did an excellent job! You scored 90 out of 100. The test set has 6 million records and the training set has 4 million records. This allows you to train your model using 70% of the remaining record count after excluding the test set. Additionally, adding 20000 records to the test set won't affect the model's performance more than 1%, as long as the accuracy doesn't decrease by 10% due to this increase."
+}
