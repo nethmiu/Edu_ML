@@ -92,7 +92,8 @@ def grader_tool(grading_json: str) -> str:
                 "feedback": feedback
             }, f, ensure_ascii=False, indent=4)
             
-        logger.info(f"Grader Tool: Successfully processed score {score} ({result})")
+        #logger.info(f"Grader Tool: Successfully processed score {score} ({result})")
+        logger.info("Grader Tool: Successfully saved grades.json")
         return f"Grader Output: Score {score}/100 ({result})\nFeedback: {feedback}"
     except Exception as e:
         logger.error(f"Grader Tool File Error: {str(e)}")

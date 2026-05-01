@@ -4,7 +4,7 @@ from logger_config import logger
 from tools import grader_tool
 
 # Initialize the Local LLM (Phi)
-llm = OllamaLLM(model="phi")
+llm = OllamaLLM(model="phi3")
 
 # Student 1: The Content Summarizer
 def summarizer_agent(state: AgentState):
@@ -31,38 +31,47 @@ def question_generator_agent(state: AgentState):
 
 # Student 3: The Performance Evaluator
 def evaluator_agent(state: AgentState):
+    print("\n--- [AGENT 3] EVALUATING PERFORMANCE ---") # මෙන්න මේ පේළිය එකතු කරන්න
     logger.info("AGENT 3: Performance Evaluator task execution started.")
-    print("\n--- [AGENT 3] EVALUATING PERFORMANCE ---")
-    
-    # Safeguard for empty quiz data from Agent 2
     quiz_data = state.get('quiz_questions', "")
-    if not quiz_data or len(str(quiz_data).strip()) < 5:
-        logger.warning("AGENT 3: Quiz questions are missing. Cannot evaluate properly.")
-        state['grading_results'] = "Evaluation Error: No quiz questions were provided for comparison."
+    student_answers = state.get('student_answers', "")
+
+    # 1. Input Validation: JSON එකක්ද කියලා බලන්න
+    if not quiz_data:
+        state['grading_results'] = "Evaluation Error: No quiz data found."
         return state
 
-    # Prompt engineering designed for Small Language Models (SLMs)
+    # 2. Prompt Engineering (Critical for Assignment Rubric)
+    # අපි LLM එකට හරියටම කියනවා JSON එක parse කරන්න කියලා.
     prompt = f"""
-    SYSTEM: You are a strict University Academic Evaluator. 
-    TASK: Grade the student's answers based on the correct answers in the Quiz Data.
+    SYSTEM: You are a strict University Academic Evaluator.
+    TASK: Grade student answers based on the provided Quiz JSON.
     
-    QUIZ DATA: {quiz_data}
-    STUDENT ANSWERS: {state.get('student_answers')}
+    QUIZ DATA (JSON format):
+    {quiz_data}
     
-    SCORING EXAMPLES:
-    - If answer matches 'Supervised', Score: 100
-    - If answer matches 'A straight line', Score: 100
-    - If answer is wrong, Score: 0
+    STUDENT ANSWERS:
+    {student_answers}
     
-    FORMAT: Return ONLY a JSON object: {{"score": <int>, "feedback": "<string>"}}
-    JSON:"""
+    INSTRUCTIONS:
+    1. Iterate through the "questions" list in the JSON.
+    2. For each question ID, find the corresponding student answer.
+    3. Compare the student answer with the 'correct_answer' field.
+    4. Calculate a percentage score (0-100).
+    5. Generate a short feedback string explaining which questions were wrong.
     
-    # 1. LLM Reasoning
+    OUTPUT CONSTRAINT: Return ONLY a valid JSON object:
+    {{"score": <int>, "feedback": "<string>"}}
+    """
+    
+    # 3. LLM Reasoning
+    # llm.invoke එකෙන් එන result එක JSON string එකක් විය යුතුයි.
     raw_grading = llm.invoke(prompt)
     
-    # 2. Tool Usage (Saves to grades.json and updates state)
-    tool_summary = grader_tool(raw_grading)
-    state['grading_results'] = tool_summary
+    # 4. Tool Usage: grading_results එක සේව් කරගැනීම
+    # grader_tool එකට අපි මේ raw_grading එක යවනවා.
+    tool_result = grader_tool(raw_grading)
+    state['grading_results'] = tool_result
     
     logger.info("AGENT 3: Performance Evaluator task execution finished.")
     return state
