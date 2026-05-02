@@ -1,9 +1,11 @@
-from typing import TypedDict, Annotated, List
+from typing import TypedDict, Any
 
-# පද්ධතිය පුරා හුවමාරු වන දත්ත ව්‍යුහය 
-class AgentState(TypedDict):
-    lecture_notes: str        # Student 1 ලබාගන්නා දත්ත
-    summary: str              # Student 1 නිපදවන සාරාංශය
-    quiz_questions: List[str] # Student 2 සඳහා
-    grading_results: str      # Student 3 සඳහා
-    final_study_plan: str     # Student 4 සඳහා
+
+class AgentState(TypedDict, total=False):
+    lecture_notes: str
+    topic: str
+    summary: str
+    quiz: Any
+    quiz_file: str
+    grading_results: str
+    final_study_plan: str

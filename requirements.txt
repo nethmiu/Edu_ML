@@ -3,3 +3,7 @@ langchain-community
 langgraph
 ollama
 pydantic
+langchain-ollama
+ollama
+pytest
+python-dotenv
