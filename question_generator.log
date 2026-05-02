@@ -15,3 +15,4 @@
 2026-05-02 14:49:41,392 | INFO | question_generator | Quiz validation successful. Generated 5 questions.
 2026-05-02 14:49:41,427 | INFO | question_generator | Quiz exported successfully to: /Users/chaveensewni/Desktop/Y4S1/CTSE/CTSE2/Edu_ML/quiz.json
 2026-05-02 14:49:41,427 | INFO | question_generator | Run completed successfully.
+2026-05-02 15:24:30,257 | INFO | question_generator | QuestionGeneratorAgent initialized with model: llama3
