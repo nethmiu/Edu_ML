@@ -37,9 +37,9 @@ if __name__ == "__main__":
         print(f"\n[STUDENT 1: SUMMARIZER OUTPUT]\n{'-' * 30}\n{summary_out}")
         summary_saver_tool(summary_out)
 
-        # Student 2 Output
+        # WIJESINGHE WACS - Output
         quiz_out = result.get("quiz", "No quiz generated.")
-        print(f"\n[STUDENT 2: QUESTION GENERATOR OUTPUT]\n{'-' * 30}\n{quiz_out}")
+        print(f"\n[WIJESINGHE WACS - : QUESTION GENERATOR OUTPUT]\n{'-' * 30}\n{quiz_out}")
         print(f"\nQuiz file saved at: {result.get('quiz_file', 'No quiz file path available')}")
 
         # Student 3 Output

@@ -6,7 +6,7 @@ from quiz_generator.question_generator import QuestionGeneratorAgent
 # Shared local LLM for Student 1, 3, and 4
 llm = OllamaLLM(model="llama3")
 
-# Student 2 integrated component
+# WIJESINGHE WACS - integrated component
 question_gen_runner = QuestionGeneratorAgent(model_name="llama3")
 
 
@@ -28,7 +28,7 @@ def summarizer_agent(state: AgentState):
     return state
 
 
-# Chaveen : The Question Generator
+# WIJESINGHE W.A.C.S : The Quiz Generator
 def question_generator_agent(state: AgentState):
     logger.info("AGENT 2: Question Generator task started.")
     print("\n--- [AGENT 2] GENERATING QUIZ ---")
