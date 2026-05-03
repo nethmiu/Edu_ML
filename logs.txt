@@ -37,3 +37,42 @@
 2026-05-01 22:47:56,948 - INFO - Quiz Exporter Tool: Successfully exported quiz.json
 2026-05-01 22:47:56,950 - INFO - Planner Formatter Tool: Successfully saved study_plan.txt
 2026-05-01 22:47:56,950 - INFO - === SYSTEM EXECUTION FINISHED SUCCESSFULLY ===
+2026-05-03 10:05:48,285 - INFO - === EDUCATIONAL MULTI-AGENT SYSTEM INITIALIZED ===
+2026-05-03 10:05:48,285 - INFO - File Reader Tool: Successfully read notes.txt
+2026-05-03 10:05:48,290 - INFO - AGENT 1: Summarizer task execution started.
+2026-05-03 10:05:59,372 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2026-05-03 10:06:39,583 - INFO - AGENT 1: Summarizer completed the task.
+2026-05-03 10:06:39,589 - INFO - AGENT 2: Question Generator task started.
+2026-05-03 10:06:59,968 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2026-05-03 10:07:28,237 - INFO - AGENT 2: Question Generator completed the task.
+2026-05-03 10:07:28,240 - INFO - AGENT 3: Evaluator task started.
+2026-05-03 10:07:41,620 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2026-05-03 10:07:58,685 - INFO - AGENT 3: Evaluator completed the task.
+2026-05-03 10:07:58,688 - INFO - AGENT 4: Study Planner task started.
+2026-05-03 10:08:08,416 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2026-05-03 10:10:26,684 - INFO - AGENT 4: Study Planner completed the task.
+2026-05-03 10:10:26,686 - INFO - Summary Saver Tool: Successfully saved summary.txt
+2026-05-03 10:10:26,689 - INFO - Quiz Exporter Tool: Successfully exported quiz.json
+2026-05-03 10:10:26,691 - INFO - Planner Formatter Tool: Successfully saved study_plan.txt
+2026-05-03 10:10:26,691 - INFO - === SYSTEM EXECUTION FINISHED SUCCESSFULLY ===
+2026-05-03 10:22:55,827 - INFO - === EDUCATIONAL MULTI-AGENT SYSTEM INITIALIZED ===
+2026-05-03 10:22:55,827 - INFO - File Reader Tool: Successfully read notes.txt
+2026-05-03 10:22:55,831 - INFO - AGENT 1: Summarizer task execution started.
+2026-05-03 10:23:18,668 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2026-05-03 10:23:58,222 - INFO - AGENT 1: Summarizer completed the task.
+2026-05-03 10:23:58,224 - INFO - AGENT 2: Question Generator task started.
+2026-05-03 10:24:17,648 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2026-05-03 10:24:39,852 - INFO - AGENT 2: Question Generator completed the task.
+2026-05-03 10:24:39,853 - INFO - AGENT 3: Evaluator task started.
+2026-05-03 10:24:51,750 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2026-05-03 10:25:09,184 - INFO - AGENT 3: Evaluator completed the task.
+2026-05-03 10:25:09,187 - INFO - AGENT 4: Study Planner task started.
+2026-05-03 10:25:47,211 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2026-05-03 10:27:31,822 - INFO - AGENT 4: LLM successfully generated study plan.
+2026-05-03 10:27:31,824 - INFO - Planner Formatter Tool: Successfully saved study_plan.txt
+2026-05-03 10:27:31,825 - INFO - AGENT 4: Tool result — Study plan saved to study_plan.txt
+2026-05-03 10:27:31,826 - INFO - AGENT 4: Study Planner completed successfully.
+2026-05-03 10:27:31,829 - INFO - Summary Saver Tool: Successfully saved summary.txt
+2026-05-03 10:27:31,831 - INFO - Quiz Exporter Tool: Successfully exported quiz.json
+2026-05-03 10:27:31,833 - INFO - Planner Formatter Tool: Successfully saved study_plan.txt
+2026-05-03 10:27:31,833 - INFO - === SYSTEM EXECUTION FINISHED SUCCESSFULLY ===

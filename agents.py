@@ -39,7 +39,50 @@ def evaluator_agent(state: AgentState):
 # Student 4: The Study Planner
 def study_planner_agent(state: AgentState):
     logger.info("AGENT 4: Study Planner task started.")
-    prompt = f"SYSTEM: Study Consultant. TASK: 7-day schedule. EVALUATION: {state['grading_results']}"
-    state['final_study_plan'] = llm.invoke(prompt)
-    logger.info("AGENT 4: Study Planner completed the task.")
+    print("\n--- [AGENT 4] GENERATING PERSONALIZED STUDY PLAN ---")
+
+    grading = state.get('grading_results', '')
+
+    prompt = f"""
+SYSTEM: You are an expert academic study coach. You create weekly study schedules for students.
+
+TASK: Read the student performance evaluation below and create a 7-day study schedule.
+
+STRICT RULES:
+1. You are the COACH, NOT the student. Do NOT say "thank you" or respond as a student.
+2. Do NOT say "What do you think?" or ask any questions at the end.
+3. Produce a schedule for exactly 7 days: Monday to Sunday.
+4. Give more study time to topics where the student scored lower.
+5. Format each day exactly like this:
+
+MONDAY:
+- 08:00-10:00 | [Topic Name] | Priority: HIGH | Goal: [what to study]
+
+TUESDAY:
+- 09:00-10:30 | [Topic Name] | Priority: MEDIUM | Goal: [what to study]
+
+6. End with a STUDY TIPS section with 3 practical tips.
+7. Only use topics mentioned in the evaluation. Do not invent new topics.
+8. Write in English only. Be direct and structured. Do not add any closing remarks.
+
+STUDENT PERFORMANCE EVALUATION:
+{grading}
+
+Now write the 7-day study schedule:
+"""
+
+    try:
+        raw_plan = llm.invoke(prompt)
+        logger.info("AGENT 4: LLM successfully generated study plan.")
+    except Exception as e:
+        logger.error(f"AGENT 4: LLM failed — {e}")
+        state['final_study_plan'] = f"Error: {str(e)}"
+        return state
+
+    from tools import planner_formatter_tool
+    save_result = planner_formatter_tool(raw_plan)
+    logger.info(f"AGENT 4: Tool result — {save_result}")
+
+    state['final_study_plan'] = raw_plan
+    logger.info("AGENT 4: Study Planner completed successfully.")
     return state
