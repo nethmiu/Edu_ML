@@ -25,7 +25,7 @@ def summary_saver_tool(summary_text: str):
         logger.error(f"Summary Saver Tool Error: {str(e)}")
         return f"Error saving summary: {str(e)}"
 
-# Student 2: Quiz Exporter
+# WIJESINGHE WACS -: Quiz Exporter
 def quiz_exporter_tool(quiz_content: str):
     """Saves the generated quiz questions into a JSON file."""
     try:

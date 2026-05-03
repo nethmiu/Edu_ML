@@ -1,0 +1,18 @@
+2026-05-02 14:41:23,933 | INFO | question_generator | QuestionGeneratorAgent initialized with model: llama3
+2026-05-02 14:41:53,999 | INFO | question_generator | Run started.
+2026-05-02 14:41:53,999 | INFO | question_generator | Received topic: Generated Quiz
+2026-05-02 14:41:53,999 | INFO | question_generator | Using model: llama3
+2026-05-02 14:41:53,999 | INFO | question_generator | Generating quiz for topic: Generated Quiz
+2026-05-02 14:41:54,000 | INFO | question_generator | Summary length: 861 characters
+2026-05-02 14:42:29,808 | INFO | question_generator | Received raw response from model.
+2026-05-02 14:48:37,399 | INFO | question_generator | QuestionGeneratorAgent initialized with model: llama3
+2026-05-02 14:49:04,299 | INFO | question_generator | Run started.
+2026-05-02 14:49:04,300 | INFO | question_generator | Received topic: Generated Quiz
+2026-05-02 14:49:04,300 | INFO | question_generator | Using model: llama3
+2026-05-02 14:49:04,300 | INFO | question_generator | Generating quiz for topic: Generated Quiz
+2026-05-02 14:49:04,300 | INFO | question_generator | Summary length: 881 characters
+2026-05-02 14:49:41,322 | INFO | question_generator | Received raw response from model.
+2026-05-02 14:49:41,392 | INFO | question_generator | Quiz validation successful. Generated 5 questions.
+2026-05-02 14:49:41,427 | INFO | question_generator | Quiz exported successfully to: /Users/chaveensewni/Desktop/Y4S1/CTSE/CTSE2/Edu_ML/quiz.json
+2026-05-02 14:49:41,427 | INFO | question_generator | Run completed successfully.
+2026-05-02 15:24:30,257 | INFO | question_generator | QuestionGeneratorAgent initialized with model: llama3
